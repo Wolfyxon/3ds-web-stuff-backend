@@ -2,7 +2,7 @@
 Server side API functions for [3DS Web Stuff](https://wolfyxon.github.io/3ds-web-stuff/)
 
 ## Environment variables
-### PostresSQL Database
+### PostreSQL Database
 - `POSTGRES_URL`
 - `POSTGRES_URL_NON_POOLING`
 - `POSTGRES_URL_NO_SSL`
