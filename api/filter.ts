@@ -1,13 +1,31 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 // Main logic
-const bannedWords: string[] = [
+
+const bannedWords: string[] = [ // lord, forgive me for writing those
     "fuck",
+    "fuk",
+    "fook",
+    "foock",
+    "fack",
+    "fak",
+
     "bitch",
+    "bich",
+    
     "whore",
+    "whor",
+    
     "ass",
+
     "pussy",
-    "dick"
+    
+    "dick",
+    "dik",
+    "dic",
+    "diq",
+
+    "kys"
 ];
 
 const banChar = "*";
