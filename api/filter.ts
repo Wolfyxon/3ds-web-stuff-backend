@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-// Main logic
+// --== Main logic ==-- //
 
 const bannedWords: string[] = [ // lord, forgive me for writing those
     "fuck",
@@ -69,7 +69,7 @@ export function filterText(text: string): FilterResult {
     return res;
 }
 
-// Request handler
+// --== Request handler ==-- //
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
     const text: string | undefined = req.headers["text"] as string;
