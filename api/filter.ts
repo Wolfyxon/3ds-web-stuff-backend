@@ -19,12 +19,35 @@ const bannedWords: string[] = [ // lord, forgive me for writing those
     
     "ass",
 
+    "vagina",
+
     "pussy",
     
+    "penis",
+
     "dick",
     "dik",
     "dic",
     "diq",
+
+    "sex",
+    "seegz",
+    "segz",
+    "seks",
+    "secs",
+
+    "masturb",
+
+    "shit",
+    "schit",
+    
+    "nigger",
+    "niger", // I'm sorry, the country of Niger
+    "niga",
+    "nigga",
+    "niqqer",
+    "niqer",
+    "niqqer",
 
     "kys",
 
