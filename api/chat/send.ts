@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { sql } from '@vercel/postgres';
-const crypto = require("crypto");
 
-const MAX_MESSAGE_LEN = 512;
-const MAX_USERNAME_LEN = 32;
+
+const dbMgr = require("../../lib/dbManager");
+const crypto = require("crypto");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const username = req.headers["username"];
@@ -13,11 +13,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).send("Please include the 'username' and 'message' headers");
     }
 
-    if(message.length > MAX_MESSAGE_LEN) {
+    if(message.length > dbMgr.MAX_MESSAGE_LEN) {
         return res.status(400).send("Message too long");
     }
 
-    if(username.length > MAX_USERNAME_LEN) {
+    if(username.length > dbMgr.MAX_USERNAME_LEN) {
         return res.status(400).send("Username too long");
     }
 
