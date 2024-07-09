@@ -28,12 +28,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await dbMgr.setup();
 
-    await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
+    /*await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
         ${username},
         ${message},
         now(),
         ${ipHash}
-    )`;
+    )`;*/
 
     // TODO: filtering
 
