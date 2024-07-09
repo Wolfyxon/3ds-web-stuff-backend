@@ -26,14 +26,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`<${username}> ${message}`);
 
-    dbMgr.setup();
+    await dbMgr.setup();
 
-    await sql`INSERT INTO chat VALUES (
+    await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
         ${username},
         ${message},
         now(),
         ${ipHash}
     )`;
-    
+
     // TODO: filtering
+
+    return res.status(200).send("sent");
+    
 }
