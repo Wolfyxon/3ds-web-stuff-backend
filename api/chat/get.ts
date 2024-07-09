@@ -6,7 +6,7 @@ const dbMgr = require("../../lib/dbManager");
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     await dbMgr.setup();
 
-    const sqlRes = await sql`SELECT username, message, timestamp FROM chat ORDER BY timestamp ASC`;
+    const sqlRes = await sql`SELECT username, message, timestamp FROM chat ORDER BY timestamp DESC LIMIT 8`;
 
     res.json(sqlRes.rows);
 }
