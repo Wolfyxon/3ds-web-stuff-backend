@@ -2,7 +2,7 @@ import fs = require("fs");
 import utils = require("../lib/utils");
 
 export const configTemplatePath = "configTemplate.jsonc";
-export const configPath =  "config.jsonc";
+export const configPath =  process.env["CONFIG"] || "config.jsonc";
 
 export const configTemplate = utils.parseJSONC(fs.readFileSync(configTemplatePath, 'utf8'));
 
