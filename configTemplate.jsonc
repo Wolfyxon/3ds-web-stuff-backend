@@ -1,19 +1,19 @@
 {
     "ip": {
-        "encrypt": true,
-        "blocked": [],
-        "blockedHashes": []
+        "encrypt": true, // Should IP addresses be logged and saved as sha1 hashes
+        "blocked": [], // Blocked IP addresses
+        "blockedHashes": [] // Blocked IP address hashes
     },
 
     "chat": {
-        "enableSending": true,
+        "enableSending": true, // Should sending chat messages be enabled
         
-        "delayPerUserMs": 100,
-        "maxMessagesPerMinuteForUser": 20,
+        "delayPerUserMs": 100, // Delay for how quickly a user can send messages
+        "maxMessagesPerMinuteForUser": 20, // Max amount of messages per minute for a user
         
         "lengthLimits": {
-            "username": 32,
-            "message": 512
+            "username": 32, // Max username character length
+            "message": 512 // Max message character lengths
         }
     }
 }
