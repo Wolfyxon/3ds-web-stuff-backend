@@ -2,6 +2,7 @@
 Server side API functions for [3DS Web Stuff](https://wolfyxon.github.io/3ds-web-stuff/)
 
 ## Environment variables
+- `CONFIG`: Path to the config JSON file
 ### PostreSQL Database
 - `POSTGRES_URL`
 - `POSTGRES_URL_NON_POOLING`
