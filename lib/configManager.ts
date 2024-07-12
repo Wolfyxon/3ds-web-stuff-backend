@@ -1,5 +1,5 @@
-const fs = require("fs");
-const utils = require("../lib/utils");
+import fs = require("fs");
+import utils = require("../lib/utils");
 
 export const configTemplatePath = "configTemplate.json";
 export const configPath =  "config.json";

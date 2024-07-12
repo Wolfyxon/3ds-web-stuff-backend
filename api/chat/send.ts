@@ -2,8 +2,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { sql } from '@vercel/postgres';
 
 
-const dbMgr = require("../../lib/dbManager");
-const configMgr = require("../../lib/configManager");
+import dbMgr = require("../../lib/dbManager");
+import configMgr = require("../../lib/configManager");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(configMgr.isIpBlocked(req.socket.remoteAddress)) {
