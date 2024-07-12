@@ -7,7 +7,9 @@ const configMgr = require("../../lib/configManager");
 const crypto = require("crypto");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if(configMgr.isIpBlocked(req.socket.remoteAddress)) return res.status(403).send("You are not allowed to chat");
+    if(configMgr.isIpBlocked(req.socket.remoteAddress)) {
+        return res.status(403).send("You are not allowed to chat");
+    }
     
     const username = req.headers["username"] as string;
     const message = req.headers["message"] as string;
