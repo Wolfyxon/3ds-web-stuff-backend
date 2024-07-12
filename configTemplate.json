@@ -1,4 +1,6 @@
 {
+    "encryptIPs": true,
+
     "chat": {
         "enableSending": true,
         
