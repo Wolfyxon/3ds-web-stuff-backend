@@ -25,11 +25,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(username.length > dbMgr.MAX_USERNAME_LEN) {
         return res.status(400).send("Username too long");
     }
+    
+    const ip = configMgr.processIp(req.socket.remoteAddress);
 
-    // IP address is hashed for privacy
-    const ipHash = crypto.createHash("sha1").update(req.socket.remoteAddress).digest("hex");
-
-    console.log(`<${username}: ${ipHash}> ${message}`);
+    console.log(`<${username}: ${ip}> ${message}`);
 
     await dbMgr.setupChat();
 
@@ -37,7 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         ${username},
         ${message},
         now(),
-        ${ipHash}
+        ${ip}
     )`;
 
     // TODO: filtering
