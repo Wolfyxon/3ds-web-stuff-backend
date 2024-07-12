@@ -1,0 +1,13 @@
+{
+    "chat": {
+        "enableSending": true,
+        
+        "delayPerUserMs": 100,
+        "maxMessagesPerMinuteForUser": 20,
+        
+        "lengthLimits": {
+            "username": 32,
+            "message": 512
+        }
+    }
+}
