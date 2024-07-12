@@ -1,4 +1,4 @@
-function pathAtObject(obj: Object, path: string, separator: string = ".") {
+export function pathAtObject(obj: Object, path: string, separator: string = ".") {
     const split = path.split(separator);
     let current = obj;
 
