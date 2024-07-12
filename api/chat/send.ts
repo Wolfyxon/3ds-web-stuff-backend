@@ -29,7 +29,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // IP address is hashed for privacy
     const ipHash = crypto.createHash("sha1").update(req.socket.remoteAddress).digest("hex");
 
-    console.log(`<${username}> ${message}`);
+    console.log(`<${username}: ${ipHash}> ${message}`);
 
     await dbMgr.setupChat();
 
