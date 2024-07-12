@@ -28,3 +28,8 @@ export function isDebug(): boolean {
 export function hasConfig(): boolean {
     return fs.existsSync(configPath);
 }
+
+export function getConfig(): Config | null {
+    if(!hasConfig()) return;
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+}
