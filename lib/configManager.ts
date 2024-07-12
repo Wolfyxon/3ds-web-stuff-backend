@@ -9,6 +9,19 @@ export const configTemplate = JSON.parse(fs.readFileSync(configTemplatePath, 'ut
 
 export type Config = keyof typeof configTemplate;
 
+export function isDebug(): boolean {
+    return process.env["DEBUG"] === "1";
+}
+
+export function hasConfig(): boolean {
+    return fs.existsSync(configPath);
+}
+
+export function getConfig(): Config | null {
+    if(!hasConfig()) return;
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+}
+
 export function pathAtObject(obj: Object, path: string, separator: string = ".") {
     const split = path.split(separator);
     let current = obj;
@@ -31,17 +44,4 @@ export function get(path: string, separator: string = ".") {
     if(fromTemplate === null || fromTemplate === undefined) throw `Unknown property at path '${path}'`;
 
     return fromTemplate;
-}
-
-export function isDebug(): boolean {
-    return process.env["DEBUG"] === "1";
-}
-
-export function hasConfig(): boolean {
-    return fs.existsSync(configPath);
-}
-
-export function getConfig(): Config | null {
-    if(!hasConfig()) return;
-    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
