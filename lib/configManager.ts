@@ -53,3 +53,7 @@ export function processIp(ip: string): string {
 
     return ip;
 }
+
+export function isIpBlocked(ip: string): string {
+    
+}
