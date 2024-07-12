@@ -1,5 +1,4 @@
 const fs = require("fs");
-const crypto = require("crypto");
 const utils = require("../lib/utils");
 
 export const configTemplatePath = "configTemplate.json";
