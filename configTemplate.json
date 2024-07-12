@@ -1,5 +1,9 @@
 {
-    "encryptIPs": true,
+    "ip": {
+        "encrypt": true,
+        "blocked": [],
+        "blockedHashes": []
+    },
 
     "chat": {
         "enableSending": true,

@@ -47,9 +47,9 @@ export function get(path: string, separator: string = ".") {
 }
 
 export function processIp(ip: string): string {
-    if(get("encryptIPs")) {
+    if(get("ip.encrypt")) {
         return crypto.createHash("sha1").update(ip).digest("hex");
     }
-    
+
     return ip;
 }
