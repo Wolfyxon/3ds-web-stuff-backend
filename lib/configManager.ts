@@ -1,5 +1,6 @@
 const fs = require("fs");
 const crypto = require("crypto");
+const utils = require("../lib/utils");
 
 export const configTemplatePath = "configTemplate.json";
 export const configPath =  "config.json";
@@ -54,6 +55,9 @@ export function processIp(ip: string): string {
     return ip;
 }
 
-export function isIpBlocked(ip: string): string {
-    
+export function isIpBlocked(ip: string): boolean {
+    const blocked = get("ip.blocked") as string[];
+    const blockedHashes = get("ip.blockedHashes") as string[];
+
+    return blocked.includes(ip) || blockedHashes.includes(utils.hash(ip));
 }
