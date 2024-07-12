@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const crypto = require("crypto");
 
 export const configTemplatePath = "configTemplate.json";
 export const configPath =  "config.json";
@@ -44,4 +44,12 @@ export function get(path: string, separator: string = ".") {
     if(fromTemplate === null || fromTemplate === undefined) throw `Unknown property at path '${path}'`;
 
     return fromTemplate;
+}
+
+export function processIp(ip: string): string {
+    if(get("encryptIPs")) {
+        return crypto.createHash("sha1").update(ip).digest("hex");
+    }
+    
+    return ip;
 }
