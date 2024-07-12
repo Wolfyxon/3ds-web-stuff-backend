@@ -21,6 +21,18 @@ export function pathAtObject(obj: Object, path: string, separator: string = ".")
     return current;
 }
 
+export function get(path: string, separator: string = ".") {
+    if(hasConfig()) {
+        const fromConfig = pathAtObject(getConfig(), path, separator);
+        if(fromConfig !== undefined && fromConfig !== null) return fromConfig;
+    }
+    
+    const fromTemplate = pathAtObject(configTemplate, path, separator);
+    if(fromTemplate === null || fromTemplate === undefined) throw `Unknown property at path '${path}'`;
+
+    return fromTemplate;
+}
+
 export function isDebug(): boolean {
     return process.env["DEBUG"] === "1";
 }
