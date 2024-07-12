@@ -26,7 +26,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`<${username}> ${message}`);
 
-    await dbMgr.setup();
+    await dbMgr.setupChat();
 
     /*await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
         ${username},
