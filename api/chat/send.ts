@@ -3,11 +3,16 @@ import { sql } from '@vercel/postgres';
 
 
 const dbMgr = require("../../lib/dbManager");
+const configMgr = require("../lib/configManager");
 const crypto = require("crypto");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const username = req.headers["username"] as string;
     const message = req.headers["message"] as string;
+
+    if(!configMgr.get("chat.enableSending")) {
+        return res.status(403).send("Chatting is currently disabled");
+    }
 
     if(!username || !message) {
         return res.status(400).send("Please include the 'username' and 'message' headers");
@@ -28,12 +33,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await dbMgr.setupChat();
 
-    /*await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
+    await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
         ${username},
         ${message},
         now(),
         ${ipHash}
-    )`;*/
+    )`;
 
     // TODO: filtering
 
