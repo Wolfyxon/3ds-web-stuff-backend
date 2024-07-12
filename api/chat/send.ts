@@ -7,6 +7,8 @@ const configMgr = require("../lib/configManager");
 const crypto = require("crypto");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+    if(configMgr.isIpBlocked(req.socket.remoteAddress)) return res.status(403);
+    
     const username = req.headers["username"] as string;
     const message = req.headers["message"] as string;
 
@@ -25,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(username.length > dbMgr.MAX_USERNAME_LEN) {
         return res.status(400).send("Username too long");
     }
-    
+
     const ip = configMgr.processIp(req.socket.remoteAddress);
 
     console.log(`<${username}: ${ip}> ${message}`);
