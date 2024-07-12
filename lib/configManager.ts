@@ -1,10 +1,10 @@
 import fs = require("fs");
 import utils = require("../lib/utils");
 
-export const configTemplatePath = "configTemplate.json";
-export const configPath =  "config.json";
+export const configTemplatePath = "configTemplate.jsonc";
+export const configPath =  "config.jsonc";
 
-export const configTemplate = JSON.parse(fs.readFileSync(configTemplatePath, 'utf8'));
+export const configTemplate = utils.parseJSONC(fs.readFileSync(configTemplatePath, 'utf8'));
 
 
 export type Config = keyof typeof configTemplate;
@@ -19,7 +19,7 @@ export function hasConfig(): boolean {
 
 export function getConfig(): Config | null {
     if(!hasConfig()) return;
-    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    return utils.parseJSONC(fs.readFileSync(configPath, 'utf8'));
 }
 
 export function pathAtObject(obj: Object, path: string, separator: string = ".") {
