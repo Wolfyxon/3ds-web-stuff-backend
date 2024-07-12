@@ -3,7 +3,7 @@ import { sql } from '@vercel/postgres';
 
 
 const dbMgr = require("../../lib/dbManager");
-const configMgr = require("../lib/configManager");
+const configMgr = require("../../lib/configManager");
 const crypto = require("crypto");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
