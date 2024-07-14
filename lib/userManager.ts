@@ -12,5 +12,5 @@ export async function getUserById(id: number) {
 
 export async function getUserByName(username: string) {
     await dbMgr.setupUsers();
-    return (await sql`SELECT * FROM users WHERE id=${username}`).rows[0];
+    return (await sql`SELECT * FROM users WHERE username=${username}`).rows[0];
 }
