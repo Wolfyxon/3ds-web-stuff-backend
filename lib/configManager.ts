@@ -18,6 +18,9 @@ export function hasConfig(): boolean {
 }
 
 export function getConfig(): Config | null {
+    const envStr = process.env["CONFIG_STRING"];
+    if(envStr) return utils.parseJSONC(envStr);
+
     if(!hasConfig()) return;
     return utils.parseJSONC(fs.readFileSync(configPath, 'utf8'));
 }
