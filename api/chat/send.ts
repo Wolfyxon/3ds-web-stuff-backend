@@ -21,11 +21,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).send("Please include the 'username' and 'message' headers");
     }
 
-    if(message.length > dbMgr.MAX_MESSAGE_LEN) {
+    if(message.length > (configMgr.get("chat.lengthLimits.message") as number)) {
         return res.status(400).send("Message too long");
     }
 
-    if(username.length > dbMgr.MAX_USERNAME_LEN) {
+    if(username.length > (configMgr.get("chat.lengthLimits.username") as number)) {
         return res.status(400).send("Username too long");
     }
 
