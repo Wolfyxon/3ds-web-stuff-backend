@@ -1,7 +1,7 @@
 import { sql, db } from '@vercel/postgres';
 import configMgr = require("../lib/configManager");
 
-export const tables = ["chat"];
+export const tables = ["chat", "users"];
 
 // NOTE: sql`` doesn't support ${} in such queries
 
@@ -11,6 +11,16 @@ export async function setupChat() {
         message VARCHAR(${configMgr.get("chat.lengthLimits.message") as number}),
         timestamp TIMESTAMP,
         ip VARCHAR(64)
+    )`);
+}
+
+export async function setupUsers() {
+    await db.query(`CREATE TABLE IF NOT EXISTS users (
+        username VARCHAR(${configMgr.get("users.lengthLimits.username") as number}) NOT NULL,
+        displayName VARCHAR(${configMgr.get("users.lengthLimits.displayName") as number}),
+        passwordHash VARCHAR(64) NOT NULL,
+        permissionLevel NUMBER,
+        createdAt TIMESTAMP NOT NULL,
     )`);
 }
 
