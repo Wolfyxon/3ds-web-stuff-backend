@@ -16,7 +16,7 @@ export function parseJSONC(jsonc: string) {
 
 export async function getTorIPs() {
     let text: string = "";
-    const cachePath = "torUrls.txt";
+    const cachePath = "torIPs.txt";
 
     if(fs.existsSync(cachePath)) {
         text = fs.readFileSync(cachePath, "utf-8");
