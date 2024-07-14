@@ -1,4 +1,5 @@
 import crypto = require("crypto");
+import fs = require("fs");
 
 export function hash(str: string): string {
     return crypto.createHash("sha1").update(str).digest("hex");
@@ -11,4 +12,18 @@ export function isHashed(str: string): boolean {
 
 export function parseJSONC(jsonc: string) {
     return JSON.parse(jsonc.replace(new RegExp("//.*", 'mg'), ""));
+}
+
+export async function getTorIPs() {
+    let text: string = "";
+    const cachePath = "torUrls.txt";
+
+    if(fs.existsSync(cachePath)) {
+        text = fs.readFileSync(cachePath, "utf-8");
+    } else {
+        text = await (await fetch("https://check.torproject.org/torbulkexitlist")).text();
+        fs.writeFileSync(cachePath, text);
+    }
+
+    return text.split("\n");
 }
