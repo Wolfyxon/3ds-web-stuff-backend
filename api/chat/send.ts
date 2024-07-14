@@ -7,13 +7,15 @@ import configMgr = require("../../lib/configManager");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(netUtils.badCheck(req, res)) return;
-    
+
     const username = req.headers["username"] as string;
     const message = req.headers["message"] as string;
 
     if(!configMgr.get("chat.enableSending")) {
         return res.status(403).send("Chatting is currently disabled");
     }
+
+    // --== Data validation ==--
 
     if(!username || !message) {
         return res.status(400).send("Please include the 'username' and 'message' headers");
@@ -26,6 +28,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(username.length > (configMgr.get("chat.lengthLimits.username") as number)) {
         return res.status(400).send("Username too long");
     }
+
+    // --== Inserting ==--
 
     const ip = configMgr.processIp(req.socket.remoteAddress);
 
