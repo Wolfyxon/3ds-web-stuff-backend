@@ -15,5 +15,15 @@
             "username": 32, // Max username character length
             "message": 512 // Max message character lengths
         }
+    },
+
+    "users": {
+        "enableRegistering": true, // enable creation of new accounts
+        "allowedUsernameCharacters": "qwertyuiopasdfghjklzxcvbnm1234567890-_", // Allowed characters for the username
+        
+        "lengthLimits": {
+            "username": 20, // Max username character length
+            "password": 64 // Max password character length
+        }
     }
 }
