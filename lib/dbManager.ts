@@ -15,3 +15,11 @@ export async function setupChat() {
         ip VARCHAR(64)
     )`);
 }
+
+export async function deleteAllTables() {
+    console.log("> Deleting all tables!");
+
+    tables.forEach(async (table) => {
+        await db.query(`DROP TABLE IF EXISTS ${table}`);
+    });
+}
