@@ -1,6 +1,7 @@
 {
     "ip": {
         "encrypt": true, // Should IP addresses be logged and saved as sha1 hashes
+        "blockTor": false, // Should Tor IP addresses be blocked
         "blocked": [], // Blocked IP addresses
         "blockedHashes": [] // Blocked IP address hashes
     },
