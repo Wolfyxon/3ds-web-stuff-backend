@@ -20,7 +20,8 @@
     "users": {
         "enableRegistering": true, // enable creation of new accounts
         "allowedUsernameCharacters": "qwertyuiopasdfghjklzxcvbnm1234567890-_", // Allowed characters for the username
-        
+        "allowRawPasswordHeader": true, // Should sending an unhashed password be allowed
+
         "lengthLimits": {
             "username": 20, // Max username character length
             "displayName": 20 // Max display name character length
