@@ -34,5 +34,7 @@ export async function getTorIPs() {
 }
 
 export async function isTor(ip: string) {
+    if(ip === "127.0.0.1") return false;
+
     return (await getTorIPs()).includes(ip);
 }
