@@ -4,6 +4,14 @@ import configMgr = require("./configManager");
 import dbMgr = require("./dbManager");
 import utils = require("./utils");
 
+export enum PermissionLevel {
+    BANNED,
+    REGULAR,
+    VIP,
+    MODERATOR,
+    ADMIN,
+    ROOT
+}
 
 export async function getUserById(id: number) {
     await dbMgr.setupUsers();
