@@ -27,3 +27,7 @@ export async function getTorIPs() {
 
     return text.split("\n");
 }
+
+export async function isTor(ip: string) {
+    return (await getTorIPs()).includes(ip);
+}
