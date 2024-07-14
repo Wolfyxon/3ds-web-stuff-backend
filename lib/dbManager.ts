@@ -3,6 +3,7 @@ import { sql, db } from '@vercel/postgres';
 export const MAX_CHAT_MESSAGE_LEN = 512;
 export const MAX_CHAT_USERNAME_LEN = 32;
 
+export const tables = ["chat"];
 
 // NOTE: sql`` doesn't support ${} in such queries
 
