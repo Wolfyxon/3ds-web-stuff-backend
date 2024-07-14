@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from '@vercel/postgres';
 
+import netUtils = require("../../lib/netUtils");
 import configMgr = require("../../lib/configManager");
 import dbMgr = require("../../lib/dbManager");
 import userMgr = require("../../lib/userManager");
@@ -8,6 +9,8 @@ import utils = require("../../lib/utils");
 import filter = require("../filter");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+    if(netUtils.badCheck(req, res)) return;
+
     if(!configMgr.get("users.enableRegistering")) {
         return res.status(403).send("Account creation is currently disabled");
     }

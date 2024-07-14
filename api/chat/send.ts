@@ -1,11 +1,13 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { sql } from '@vercel/postgres';
 
-
+import netUtils = require("../../lib/netUtils");
 import dbMgr = require("../../lib/dbManager");
 import configMgr = require("../../lib/configManager");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+    if(netUtils.badCheck(req, res)) return;
+
     if(configMgr.isIpBlocked(req.socket.remoteAddress)) {
         return res.status(403).send("You are not allowed to chat");
     }
