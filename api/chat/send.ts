@@ -35,7 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await dbMgr.setupChat();
 
-    await sql`INSERT INTO chat (username, message, timestamp, ipHash) VALUES (
+    await sql`INSERT INTO chat (username, message, timestamp, ip) VALUES (
         ${username},
         ${message},
         now(),

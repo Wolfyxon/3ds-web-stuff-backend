@@ -11,6 +11,6 @@ export async function setupChat() {
         username VARCHAR(${MAX_CHAT_USERNAME_LEN}),
         message VARCHAR(${MAX_CHAT_MESSAGE_LEN}),
         timestamp TIMESTAMP,
-        ipHash VARCHAR(64)
+        ip VARCHAR(64)
     )`);
 }
