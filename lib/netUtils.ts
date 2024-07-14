@@ -8,15 +8,15 @@ export async function badCheck(req: VercelRequest, res: VercelResponse): Promise
 
     if(!configMgr.isIpBlocked(ip)) {
         res.status(403).send("You are blocked");
-        return true;
+        return false;
     }
 
     if(configMgr.get("ip.blockTor") && isTor(ip)) {
         res.status(403).send("Tor network is blocked");
-        return true;
+        return false;
     }
 
-    return false;
+    return true;
 }
 
 export async function getTorIPs() {
