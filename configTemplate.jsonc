@@ -12,7 +12,7 @@
         "maxMessagesPerMinuteForUser": 20, // Max amount of messages per minute for a user
         
         "lengthLimits": {
-            "username": 32, // Max username character length
+            "username": 20, // Max username character length
             "message": 512 // Max message character lengths
         }
     },
