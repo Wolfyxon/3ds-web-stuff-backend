@@ -1,7 +1,5 @@
 import { sql, db } from '@vercel/postgres';
-
-export const MAX_CHAT_MESSAGE_LEN = 512;
-export const MAX_CHAT_USERNAME_LEN = 32;
+import configMgr = require("../lib/configManager");
 
 export const tables = ["chat"];
 
@@ -9,8 +7,8 @@ export const tables = ["chat"];
 
 export async function setupChat() {
     await db.query(`CREATE TABLE IF NOT EXISTS chat (
-        username VARCHAR(${MAX_CHAT_USERNAME_LEN}),
-        message VARCHAR(${MAX_CHAT_MESSAGE_LEN}),
+        username VARCHAR(${configMgr.get("chat.lengthLimits.username") as number}),
+        message VARCHAR(${configMgr.get("chat.lengthLimits.message") as number}),
         timestamp TIMESTAMP,
         ip VARCHAR(64)
     )`);
