@@ -8,9 +8,9 @@ export const tables = ["chat", "users"];
 export async function setupChat() {
     await db.query(`CREATE TABLE IF NOT EXISTS chat (
         username VARCHAR(${configMgr.get("chat.lengthLimits.username") as number}),
-        message VARCHAR(${configMgr.get("chat.lengthLimits.message") as number}),
-        timestamp TIMESTAMP,
-        ip VARCHAR(64)
+        message VARCHAR(${configMgr.get("chat.lengthLimits.message") as number}) NOT NULL,
+        timestamp TIMESTAMP NOT NULL,
+        ip VARCHAR(64) NOT NULL
     )`);
 }
 
