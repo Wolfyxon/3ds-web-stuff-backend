@@ -23,8 +23,7 @@
         
         "lengthLimits": {
             "username": 20, // Max username character length
-            "displayName": 20, // Max display name character length
-            "password": 64 // Max password character length
+            "displayName": 20 // Max display name character length
         }
     }
 }
