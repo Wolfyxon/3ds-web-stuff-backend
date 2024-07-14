@@ -21,7 +21,7 @@ export async function badCheck(req: VercelRequest, res: VercelResponse): Promise
 
 export async function getTorIPs() {
     let text: string = "";
-    const cachePath = "torIPs.txt";
+    const cachePath = "/tmp/torIPs.txt";
 
     if(fs.existsSync(cachePath)) {
         text = fs.readFileSync(cachePath, "utf-8");
