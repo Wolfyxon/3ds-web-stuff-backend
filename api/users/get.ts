@@ -19,6 +19,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).send("'username' and 'id' cannot be present together");
     }
 
+    let user = null;
+
     if(id) {
         const numId = parseInt(id as string);
         
@@ -26,9 +28,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).send("Invalid user ID");
         }
 
-        return res.json(await userMgr.getUserByIdPublic(numId));
+        user = (await userMgr.getUserByIdPublic(numId));
     } 
     else if(name) {
-        return res.json(await userMgr.getUserByNamePublic(name as string));
+        user = (await userMgr.getUserByNamePublic(name as string));
     }
+
+    if(user) return res.json(user);
+    
+    return res.status(404).send("User not found");
 }
