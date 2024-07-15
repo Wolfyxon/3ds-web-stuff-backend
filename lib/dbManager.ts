@@ -20,7 +20,7 @@ export async function setupUsers() {
         username VARCHAR(${configMgr.get("users.lengthLimits.username") as number}) UNIQUE NOT NULL,
         displayName VARCHAR(${configMgr.get("users.lengthLimits.displayName") as number}),
         passwordHash VARCHAR(40) NOT NULL,
-        permissionLevel INTEGER,
+        permissionLevel INTEGER DEFAULT 1,
         createdAt TIMESTAMP NOT NULL
     )`);
 }
