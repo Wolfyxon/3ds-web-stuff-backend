@@ -26,9 +26,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).send("Invalid user ID");
         }
 
-        return res.json(userMgr.getUserByIdPublic(numId));
+        return res.json(await userMgr.getUserByIdPublic(numId));
     } 
     else if(name) {
-        return res.json(userMgr.getUserByNamePublic(name as string));
+        return res.json(await userMgr.getUserByNamePublic(name as string));
     }
 }
