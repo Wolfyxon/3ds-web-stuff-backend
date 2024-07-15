@@ -63,13 +63,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // --== Creation ==--
 
     console.log(`New user: ${username}`);
-
-    await sql`INSERT INTO users (username, displayName, passwordHash, createdAt) VALUES (
-        ${username},
-        ${displayName},
-        ${passwordHash},
-        now()
-    )`;
+    
+    await userMgr.createUser(username, passwordHash, displayName);
 
     return res.status(200).send("Yipee");
 }

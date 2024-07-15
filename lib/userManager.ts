@@ -49,3 +49,15 @@ export async function setPermissionLevel(userId: number, permissionLevel: Permis
     console.log(`> Setting permission level of ${userId} to ${permissionLevel}`);
     await sql`UPDATE users SET permissionLevel=${permissionLevel} WHERE id=${userId}`;
 }
+
+export async function createUser(username: string, passwordHash: string, displayName: string | null | undefined, permissionLevel: PermissionLevel = PermissionLevel.REGULAR) {
+    if(!utils.isHashed(passwordHash)) throw "Not a valid SHA1 hash";
+
+    await sql`INSERT INTO users (username, displayName, passwordHash, permissionLevel, createdAt) VALUES (
+        ${username},
+        ${displayName},
+        ${passwordHash},
+        ${permissionLevel},
+        now()
+    )`;
+}
