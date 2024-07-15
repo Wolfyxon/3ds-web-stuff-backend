@@ -25,12 +25,12 @@ export async function getUserByName(username: string) {
 
 export async function getUserByIdPublic(id: number) {
     await dbMgr.setupUsers();
-    return (await sql`SELECT (id, username, displayName, permissionLevel, createdAt) FROM users WHERE id=${id}`).rows[0];
+    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE id=${id}`).rows[0];
 }
 
 export async function getUserByNamePublic(username: string) {
     await dbMgr.setupUsers();
-    return (await sql`SELECT (id, username, displayName, permissionLevel, createdAt) FROM users WHERE username=${username}`).rows[0];
+    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE username=${username}`).rows[0];
 }
 
 export async function setPermissionLevel(userId: number, permissionLevel: PermissionLevel) {
