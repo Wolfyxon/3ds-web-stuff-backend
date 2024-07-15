@@ -13,24 +13,36 @@ export enum PermissionLevel {
     ROOT
 }
 
-export async function getUserById(id: number) {
-    await dbMgr.setupUsers();
-    return (await sql`SELECT * FROM users WHERE id=${id}`).rows[0];
+type PublicUser = {
+    id: number,
+    username: string,
+    displayname: string | null,
+    permissionlevel: PermissionLevel
+    createdat: string
 }
 
-export async function getUserByName(username: string) {
-    await dbMgr.setupUsers();
-    return (await sql`SELECT * FROM users WHERE username=${username}`).rows[0];
+type User = PublicUser & {
+    passwordhash: string
 }
 
-export async function getUserByIdPublic(id: number) {
+export async function getUserById(id: number): Promise<User | undefined> {
     await dbMgr.setupUsers();
-    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE id=${id}`).rows[0];
+    return (await sql`SELECT * FROM users WHERE id=${id}`).rows[0] as User;
 }
 
-export async function getUserByNamePublic(username: string) {
+export async function getUserByName(username: string): Promise<User | undefined> {
     await dbMgr.setupUsers();
-    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE username=${username}`).rows[0];
+    return (await sql`SELECT * FROM users WHERE username=${username}`).rows[0] as User;
+}
+
+export async function getUserByIdPublic(id: number): Promise<PublicUser | undefined> {
+    await dbMgr.setupUsers();
+    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE id=${id}`).rows[0] as PublicUser;
+}
+
+export async function getUserByNamePublic(username: string): Promise<PublicUser | undefined> {
+    await dbMgr.setupUsers();
+    return (await sql`SELECT id, username, displayName, permissionLevel, createdAt FROM users WHERE username=${username}`).rows[0] as PublicUser;
 }
 
 export async function setPermissionLevel(userId: number, permissionLevel: PermissionLevel) {
