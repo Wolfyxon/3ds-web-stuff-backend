@@ -48,6 +48,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
     }
 
+    const allowedChars = configMgr.get("users.allowedUsernameCharacters") as string;
+    
+    username.split("").forEach((char) => {
+        if(!allowedChars.includes(char)) {
+            return res.status(400).send(`Username contains disallowed character: '${char}'. Allowed characters: ${allowedChars}`);
+        }
+    });
+
     // --== Post checks ==--
     
     await dbMgr.setupUsers();
@@ -63,7 +71,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // --== Creation ==--
 
     console.log(`New user: ${username}`);
-    
+
     await userMgr.createUser(username, passwordHash, displayName);
 
     return res.status(200).send("Yipee");
