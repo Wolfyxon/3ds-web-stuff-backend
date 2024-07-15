@@ -7,4 +7,7 @@
 /config.json
 /torIPs.txt
 /api/test.ts
+
 .env*
+*.tmp
+*~
