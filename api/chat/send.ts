@@ -4,6 +4,7 @@ import { sql } from '@vercel/postgres';
 import netUtils = require("../../lib/netUtils");
 import dbMgr = require("../../lib/dbManager");
 import configMgr = require("../../lib/configManager");
+import filter = require("../filter");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if(await netUtils.badCheck(req, res)) return;
@@ -27,6 +28,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if(username.length > (configMgr.get("chat.lengthLimits.username") as number)) {
         return res.status(400).send("Username too long");
+    }
+
+    if(filter.filterText(username).filtered) {
+        return res.status(406).send("This username is not allowed");
     }
 
     // --== Inserting ==--
