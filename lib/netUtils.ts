@@ -6,7 +6,7 @@ import configMgr = require("./configManager");
 export async function badCheck(req: VercelRequest, res: VercelResponse): Promise<boolean> {
     const ip = req.socket.remoteAddress;
 
-    if(!configMgr.isIpBlocked(ip)) {
+    if(configMgr.isIpBlocked(ip)) {
         res.status(403).send("You are blocked");
         return true;
     }
