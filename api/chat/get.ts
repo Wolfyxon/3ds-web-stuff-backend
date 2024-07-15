@@ -5,7 +5,7 @@ import dbMgr = require("../../lib/dbManager");
 import netUtils = require("../../lib/netUtils");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if(netUtils.badCheck(req, res)) return;
+    if(await netUtils.badCheck(req, res)) return;
 
     await dbMgr.setupChat();
 

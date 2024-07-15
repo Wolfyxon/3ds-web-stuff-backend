@@ -9,7 +9,7 @@ import utils = require("../../lib/utils");
 import filter = require("../filter");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if(netUtils.badCheck(req, res)) return;
+    if(await netUtils.badCheck(req, res)) return;
 
     if(!configMgr.get("users.enableRegistering")) {
         return res.status(403).send("Account creation is currently disabled");

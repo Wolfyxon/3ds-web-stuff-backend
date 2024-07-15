@@ -6,7 +6,7 @@ import dbMgr = require("../../lib/dbManager");
 import configMgr = require("../../lib/configManager");
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if(netUtils.badCheck(req, res)) return;
+    if(await netUtils.badCheck(req, res)) return;
 
     const username = req.headers["username"] as string;
     const message = req.headers["message"] as string;
