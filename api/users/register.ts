@@ -37,19 +37,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if(rawPassword) {
         if(!configMgr.get("users.allowRawPasswordHeader")) {
-            return res.status(400).send("'password' is not allowed. Please hash the password as a sha1 string then use 'passwordHash'");
+            return res.status(400).send("'password' is not allowed. Please hash the password as a SHA256 string then use 'passwordHash'");
         }
 
         passwordHash = utils.hash(rawPassword); 
 
     } else if(passwordHash) {
         if(!utils.isHashed(passwordHash)) {
-            return res.status(400).send("'passwordHash' is not a valid sha1 hash");
+            return res.status(400).send("'passwordHash' is not a valid SHA256 hash");
         }
     }
 
     const allowedChars = configMgr.get("users.allowedUsernameCharacters") as string;
-    
+
     username.split("").forEach((char) => {
         if(!allowedChars.includes(char)) {
             return res.status(400).send(`Username contains disallowed character: '${char}'. Allowed characters: ${allowedChars}`);

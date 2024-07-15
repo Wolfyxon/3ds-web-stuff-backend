@@ -51,7 +51,7 @@ export async function setPermissionLevel(userId: number, permissionLevel: Permis
 }
 
 export async function createUser(username: string, passwordHash: string, displayName: string | null | undefined, permissionLevel: PermissionLevel = PermissionLevel.REGULAR) {
-    if(!utils.isHashed(passwordHash)) throw "Not a valid SHA1 hash";
+    if(!utils.isHashed(passwordHash)) throw "Not a valid SHA256 hash";
     await dbMgr.setupUsers();
     await sql`INSERT INTO users (username, displayName, passwordHash, permissionLevel, createdAt) VALUES (
         ${username},

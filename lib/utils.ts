@@ -1,11 +1,11 @@
 import crypto = require("crypto");
 
 export function hash(str: string): string {
-    return crypto.createHash("sha1").update(str).digest("hex");
+    return crypto.createHash("sha256").update(str).digest("hex");
 }
 
 export function isHashed(str: string): boolean {
-    const pattern = /^[a-fA-F0-9]{40}$/;
+    const pattern = /^[a-fA-F0-9]{64}$/;
     return pattern.test(str);
 }
 

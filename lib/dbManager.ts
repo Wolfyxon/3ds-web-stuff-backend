@@ -10,7 +10,7 @@ export async function setupChat() {
         username VARCHAR(${configMgr.get("chat.lengthLimits.username") as number}),
         message VARCHAR(${configMgr.get("chat.lengthLimits.message") as number}) NOT NULL,
         timestamp TIMESTAMP NOT NULL,
-        ip VARCHAR(40) NOT NULL
+        ip VARCHAR(64) NOT NULL
     )`);
 }
 
@@ -19,7 +19,7 @@ export async function setupUsers() {
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username VARCHAR(${configMgr.get("users.lengthLimits.username") as number}) UNIQUE NOT NULL,
         displayName VARCHAR(${configMgr.get("users.lengthLimits.displayName") as number}),
-        passwordHash VARCHAR(40) NOT NULL,
+        passwordHash VARCHAR(64) NOT NULL,
         permissionLevel INTEGER DEFAULT 1,
         createdAt TIMESTAMP NOT NULL
     )`);
