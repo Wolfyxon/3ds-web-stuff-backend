@@ -8,7 +8,7 @@
 
     "chat": {
         "enableSending": true, // Should sending chat messages be enabled
-        
+        "maxMessages": 8, // Max amount of messages. Last messages are removed when a new one is sent
         "delayPerUserMs": 100, // Delay for how quickly a user can send messages
         "maxMessagesPerMinuteForUser": 20, // Max amount of messages per minute for a user
         
