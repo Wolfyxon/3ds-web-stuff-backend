@@ -1,8 +1,9 @@
 import fs = require("fs");
+import path = require("path");
 import utils = require("../lib/utils");
 
-export const configTemplatePath = "configTemplate.jsonc";
-export const configPath =  process.env["CONFIG"] || "config.jsonc";
+export const configTemplatePath = path.join(process.cwd(), "configTemplate.jsonc");
+export const configPath =  process.env["CONFIG"] || path.join(process.cwd(), "config.jsonc");
 
 export const configTemplate = utils.parseJSONC(fs.readFileSync(configTemplatePath, 'utf8'));
 
