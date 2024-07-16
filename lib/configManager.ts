@@ -36,8 +36,8 @@ export function pathAtObject(obj: Object, path: string, separator: string = ".")
     let current = obj;
 
     split.forEach(sub => {
-        current = current[sub];
         if(current === undefined) return null;
+        current = current[sub];
     });
 
     return current;
