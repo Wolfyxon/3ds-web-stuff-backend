@@ -42,6 +42,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await dbMgr.setupChat();
 
+    await sql`DELETE FROM chat WHERE ctid IN (
+        SELECT ctid FROM chat ORDER BY timestamp LIMIT 1
+    ) AND (SELECT COUNT(*) FROM chat) > ${configMgr.get("chat.maxMessages") as number}`;
+
     await sql`INSERT INTO chat (username, message, timestamp, ip) VALUES (
         ${username},
         ${message},
