@@ -15,12 +15,17 @@ export function isDebug(): boolean {
 }
 
 export function hasConfig(): boolean {
-    return fs.existsSync(configPath);
+    return process.env["CONFIG_STRING"] !== undefined || fs.existsSync(configPath);
 }
 
 export function getConfig(): Config | null {
     const envStr = process.env["CONFIG_STRING"];
-    if(envStr) return utils.parseJSONC(envStr);
+    
+    if(envStr) {
+        const parsed = utils.parseJSONC(envStr);
+        if(!parsed) throw `Failed to parse config from CONFIG_STRING`;
+        return parsed;
+    }
 
     if(!hasConfig()) return;
     return utils.parseJSONC(fs.readFileSync(configPath, 'utf8'));
